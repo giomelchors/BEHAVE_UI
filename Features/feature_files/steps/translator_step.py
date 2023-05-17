@@ -1,3 +1,5 @@
+import time
+
 from behave import given, when, then
 
 from selenium.webdriver.common.keys import Keys
@@ -15,10 +17,15 @@ def step_impl(context, page):
 
 @when("he translate the word {table} from {Target} to {Source}")
 def step_impl(context, table, Target, Source):
-    target_tab = DataElements[context.web_site][Target]['selector']
-    TranslatorPage(context).click(target_tab)
-    text_box = DataElements['Target_Write_Bar']['selector']
-    text_box.send_keys(table)
+    target_tab = DataElements[context.web_site]['Target_language_tab']['selector']
+    element = DataElements[context.web_site]['Target_language_tab'][target_tab]
+    TranslatorPage(context).click(target_tab, element)
+    time.sleep(5)
+    text_box = DataElements[context.web_site]['Target_Write_Bar']['selector']
+    text_box_element = DataElements[context.web_site]['Target_Write_Bar'][text_box]
+    text = TranslatorPage(context).find(text_box,text_box_element)
+    text.send_keys(Target)
+    time.sleep(5)
 
 
 

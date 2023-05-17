@@ -1,13 +1,13 @@
 DataElements = {
     "Google_translate": {
         "url": "https://translate.google.com/",
-        "Target": {
+        "Target_language_tab": {
             "class_name": "target_language_tab",
             "xpath": "//*[@id='yDmH0d']/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[1]/c-wiz/div[1]/c-wiz/div["
                      "2]/button/div[3]",
             "selector": "xpath"
         },
-        "Source": {
+        "source_language_tab": {
             "class_name": "source_language_tab",
             "xpath": "//*[@id='yDmH0d']/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[1]/c-wiz/div[1]/c-wiz/div[5]/button/div[3]",
             "selector": "xpath"
