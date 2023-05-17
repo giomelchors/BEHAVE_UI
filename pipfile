@@ -9,7 +9,6 @@ behave = "*"
 webdriver-manager = "*"
 pytest = "*"
 
-
 [dev-packages]
 
 [requires]
