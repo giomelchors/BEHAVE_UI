@@ -1,6 +1,6 @@
 import time
 
-from behave import given, when, then
+from behave import given, when, then, step
 
 from selenium.webdriver.common.keys import Keys
 from Features.pages.translator_page import TranslatorPage
@@ -15,22 +15,43 @@ def step_impl(context, page):
 
 
 
-@when("he translate the word {table} from {Target} to {Source}")
-def step_impl(context, table, Target, Source):
+@when("he select the source language as {Source}")
+def step_impl(context, Source):
     target_tab = DataElements[context.web_site]['Target_language_tab']['selector']
-    element = DataElements[context.web_site]['Target_language_tab'][target_tab]
-    TranslatorPage(context).click(target_tab, element)
-    time.sleep(5)
+    element_tab = DataElements[context.web_site]['Target_language_tab'][target_tab]
+    TranslatorPage(context).click(target_tab, element_tab)
+    text_box = DataElements[context.web_site]['Source_Write_Bar']['selector']
+    text_box_element = DataElements[context.web_site]['Source_Write_Bar'][text_box]
+    text = TranslatorPage(context).find(text_box,text_box_element)
+    text.send_keys(Source)
+    language_sel = DataElements[context.web_site]['Language_source_selected_bar']['selector']
+    element_language_sel= DataElements[context.web_site]['Language_source_selected_bar'][language_sel]
+    TranslatorPage(context).click(language_sel, element_language_sel)
+
+
+@step("select the target language as {Target}")
+def step_impl(context, Target):
+    source_tab = DataElements[context.web_site]['Source_language_tab']['selector']
+    source_element = DataElements[context.web_site]['Source_language_tab'][source_tab]
+    TranslatorPage(context).click(source_tab, source_element)
     text_box = DataElements[context.web_site]['Target_Write_Bar']['selector']
     text_box_element = DataElements[context.web_site]['Target_Write_Bar'][text_box]
-    text = TranslatorPage(context).find(text_box,text_box_element)
-    text.send_keys(Target)
+    text_source = TranslatorPage(context).find(text_box, text_box_element)
+    text_source.send_keys(Target)
+    language_sel = DataElements[context.web_site]['Language_target_selected_bar']['selector']
+    element_language_sel = DataElements[context.web_site]['Language_target_selected_bar'][language_sel]
+    TranslatorPage(context).click(language_sel, element_language_sel)
+
+
+@step(u'write the sentence {Sentence}')
+def step_impl(context, Sentence):
+    text_box = DataElements[context.web_site]['text_box']['selector']
+    text_box_element = DataElements[context.web_site]['text_box'][text_box]
+    text_source = TranslatorPage(context).find(text_box, text_box_element)
+    text_source.send_keys(Sentence)
     time.sleep(5)
 
 
-
-
-
-
-#@then(u'he should see the word Mesa on the screen')
-#def step_impl(context):
+@then(u'the screen should display the translated sentence')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then the screen should display the translated sentence')

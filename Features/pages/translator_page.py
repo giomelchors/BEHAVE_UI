@@ -1,4 +1,5 @@
 from selenium.common import NoSuchElementException
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 
 
@@ -39,3 +40,9 @@ class TranslatorPage(object):
         except Exception as e:
             print('This Exception has occurred, ' + str(e))
             return e
+
+    def action_enter(self):
+        ActionChains(self.browser).send_keys(Keys.ENTER)
+
+    def drop_down(self):
+        ActionChains(self.browser).send_keys(Keys.ARROW_DOWN)
