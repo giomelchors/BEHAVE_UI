@@ -8,7 +8,7 @@ Feature: Google translate
     When he select the source language as <Source>
     And select the target language as <Target>
     And write the sentence <Sentence>
-#    Then the screen should display the translated sentence
+   Then the screen should display the <translated sentence>
     Examples:
-      | Source | Target | Sentence                  |
-      |Spanish |English |Hola Farid eres un estupido|
+      | Source | Target | Sentence                     |translated sentence          |
+      |Spanish |English |Hola Farid!!, eres un estupido|Hi Farid !!, You are a stupid|

@@ -46,3 +46,11 @@ class TranslatorPage(object):
 
     def drop_down(self):
         ActionChains(self.browser).send_keys(Keys.ARROW_DOWN)
+
+    def find_text(self, selector, element):
+        try:
+            element = TranslatorPage.find(self, selector, element)
+            return element.text
+        except Exception as e:
+            print('This Exception has occurred ' + str(e))
+            return e
